@@ -53,7 +53,7 @@ public class PlayerMover : MonoBehaviour
         if (direction.sqrMagnitude < 0.1f)
             return;
 
-        float scaledMoveSpeed = _rotateSpeed * Time.deltaTime;
+        float scaledMoveSpeed = _moveSpeed * Time.deltaTime;
         Vector3 move = Quaternion.Euler(0, transform.localEulerAngles.y, 0) * new Vector3(direction.x, 0, direction.y);
         transform.position += move * scaledMoveSpeed;
     }
