@@ -12,4 +12,14 @@ public class Player : MonoBehaviour
     {
         _currentHealth = _health;
     }
+
+    public void ApplyDamage(int damage)
+    {
+        _currentHealth -= damage;
+
+        if (_currentHealth <= 0)
+        {
+            Debug.Log("Смэрть");
+        }
+    }
 }
