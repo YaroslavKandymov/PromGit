@@ -5,10 +5,14 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private int _health;
     [SerializeField] private Player _target;
-
     public Player Target => _target;
 
     public event UnityAction Dying;
+
+    public void Init(Player target)
+    {
+        _target = target;
+    }
 
     public void TakeDamage(int damage)
     {

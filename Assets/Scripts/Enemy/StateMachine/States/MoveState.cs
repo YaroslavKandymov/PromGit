@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using DG.Tweening;
 
 public class MoveState : State
 {
@@ -8,5 +7,6 @@ public class MoveState : State
     private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, _speed * Time.deltaTime);
+        transform.LookAt(Target.transform);
     }
 }

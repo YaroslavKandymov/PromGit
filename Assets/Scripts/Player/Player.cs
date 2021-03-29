@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _currentHealth = _health;
+        Cursor.visible = false;
     }
 
     public void ApplyDamage(int damage)
@@ -22,4 +23,5 @@ public class Player : MonoBehaviour
             Debug.Log("Смэрть");
         }
     }
+
 }

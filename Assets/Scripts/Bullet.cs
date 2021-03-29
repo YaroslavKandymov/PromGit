@@ -3,20 +3,26 @@
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private int _damage;
-    [SerializeField] private float _speed;
     [SerializeField] private float _maxExistTime;
+    [SerializeField] private float _forceSpeed;
 
-    private float _elapcedTime = 0;
+    private float _elapsedTime = 0;
+    private Rigidbody _rigidbody;
+
+    private void Start()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+        _rigidbody.AddForce(Vector3.forward * _forceSpeed, ForceMode.Force);
+    }
 
     private void Update()
     {
-        _elapcedTime += Time.deltaTime;
-        transform.Translate(Vector3.forward * _speed * Time.deltaTime, Space.World);
-
-        if(_elapcedTime >= _maxExistTime)
+        _elapsedTime += Time.deltaTime;
+        
+        if (_elapsedTime >= _maxExistTime)
         {
             gameObject.SetActive(false);
-            _elapcedTime = 0;
+            _elapsedTime = 0;
         }
     }
 

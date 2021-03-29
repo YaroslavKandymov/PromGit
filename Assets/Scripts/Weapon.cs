@@ -6,6 +6,7 @@ public class Weapon : ObjectPool
 {
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private int _speedAim;
 
     private void Start()
     {
