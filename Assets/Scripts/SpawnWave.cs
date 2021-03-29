@@ -14,9 +14,16 @@ public class SpawnWave : MonoBehaviour
     private Wave _currentWave;
     private int _currentWaveNumber = 0;
     private float _timeAfterLastSpawn;
+    private int _spawned;
+    private int _dead;
 
     private void Start()
     {
+        _waves = new List<Wave>
+        {
+            _firstWave
+        };
+
         SetWave(_currentWaveNumber);
     }
 
@@ -30,12 +37,14 @@ public class SpawnWave : MonoBehaviour
         if (_timeAfterLastSpawn >= _currentWave.Delay)
         {
             InstantiateEnemy();
+            _spawned++;
             _timeAfterLastSpawn = 0;
         }
 
-        if (_waves.Count > _currentWaveNumber + 1)
+        if (_dead >= _currentWave.Count)
         {
-            _currentWave = null;
+            _dead = 0;
+            StartCoroutine(SetNextWave(_timeBetweenWaves));
         }
     }
 
@@ -45,6 +54,13 @@ public class SpawnWave : MonoBehaviour
         Enemy enemy = Instantiate(_currentWave.Template, _spawnPoints[spawnPointNumber].position, Quaternion.identity)
             .GetComponent<Enemy>();
         enemy.Init(_player);
+        enemy.Dying += OnEnemyDying;
+    }
+
+    private void OnEnemyDying(Enemy enemy)
+    {
+        _dead++;
+        enemy.Dying -= OnEnemyDying;
     }
 
     private void SetWave(int index)
@@ -52,11 +68,12 @@ public class SpawnWave : MonoBehaviour
         _currentWave = _waves[index];
     }
 
-    private IEnumerator SetNextWave(int seconds)
+    private IEnumerator SetNextWave(float seconds)
     {
+        Debug.Log("Корутина");
         yield return new WaitForSeconds(seconds);
         SetWave(++_currentWaveNumber);
-        _currentWave.Count *= 2;
+        _currentWave.Count += _currentWave.Count;
     }
 }
 

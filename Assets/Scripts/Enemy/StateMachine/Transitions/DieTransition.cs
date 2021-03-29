@@ -21,7 +21,7 @@ public class DieTransition : Transition
         _enemy.Dying -= OnMakeTransit;
     }
 
-    private void OnMakeTransit()
+    private void OnMakeTransit(Enemy enemy)
     {
         NeedTransit = true;
     }

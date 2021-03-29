@@ -1,0 +1,45 @@
+{
+    "name": "UI",
+    "maps": [
+        {
+            "name": "UIMap",
+            "id": "f14c32fc-7397-49fd-a13c-ad078a0d6154",
+            "actions": [
+                {
+                    "name": "OpenPanel",
+                    "type": "Button",
+                    "id": "ed4402e5-6441-4d30-9eeb-4a7a5b5ae616",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6d33f8c9-dd78-4603-8f25-389bf91dfb37",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenPanel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "UI",
+            "bindingGroup": "UI",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

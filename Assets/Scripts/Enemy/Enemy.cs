@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Player _target;
     public Player Target => _target;
 
-    public event UnityAction Dying;
+    public event UnityAction<Enemy> Dying;
 
     public void Init(Player target)
     {
@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
 
         if(_health <= 0)
         {
-            Dying?.Invoke();
+            Dying?.Invoke(this);
         }
     }
 }

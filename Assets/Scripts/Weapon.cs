@@ -2,28 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : ObjectPool
+public class Weapon : MonoBehaviour
 {
-    [SerializeField] private GameObject _bulletPrefab;
-    [SerializeField] private Transform _spawnPoint;
-    [SerializeField] private int _speedAim;
+    [SerializeField] private int _damage;
+
+    private Camera _camera;
 
     private void Start()
     {
-        Initialize(_bulletPrefab);
+        _camera = Camera.main;
     }
 
     public void Shoot()
     {
-        if (TryGetObject(out _bulletPrefab))
-        {
-            SetBullet();
-        }
-    }
+        Vector3 point = new Vector3(_camera.pixelWidth / 2, _camera.pixelHeight / 2, 0);
 
-    private void SetBullet()
-    {
-        _bulletPrefab.SetActive(true);
-        _bulletPrefab.transform.position = _spawnPoint.position;
+        Ray ray = _camera.ScreenPointToRay(point);
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            GameObject hitObject = hit.transform.gameObject;
+            if (hitObject.TryGetComponent<Enemy>(out Enemy enemy))
+            {
+                enemy.TakeDamage(_damage);
+            }
+        }
     }
 }
