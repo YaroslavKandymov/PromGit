@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SpawnWave : MonoBehaviour
+public class WaveSpawner : MonoBehaviour
 {
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private Player _player;
     [SerializeField] private float _timeBetweenWaves;
     [SerializeField] private Wave _firstWave;
+
+    public event UnityAction<int> WaveStarted;
 
     private List<Wave> _waves;
     private Wave _currentWave;
@@ -16,19 +18,24 @@ public class SpawnWave : MonoBehaviour
     private float _timeAfterLastSpawn;
     private int _spawned;
     private int _dead;
+    private int _currentWaveCount;
 
     private void Start()
     {
-        _waves = new List<Wave>
-        {
-            _firstWave
-        };
+        _waves = new List<Wave>();
+        _waves.Add(_firstWave);
 
         SetWave(_currentWaveNumber);
     }
 
     private void Update()
     {
+        if (_dead >= _currentWaveCount)
+        {
+            StartCoroutine(SetNextWave(_timeBetweenWaves));
+            _dead = 0;
+        }
+
         if (_currentWave == null)
             return;
 
@@ -41,10 +48,9 @@ public class SpawnWave : MonoBehaviour
             _timeAfterLastSpawn = 0;
         }
 
-        if (_dead >= _currentWave.Count)
+        if (_currentWave.Count <= _spawned)
         {
-            _dead = 0;
-            StartCoroutine(SetNextWave(_timeBetweenWaves));
+            _currentWave = null;
         }
     }
 
@@ -65,15 +71,19 @@ public class SpawnWave : MonoBehaviour
 
     private void SetWave(int index)
     {
+        _waves.Add(new Wave() { Template = _firstWave.Template, Delay = _firstWave.Delay});
         _currentWave = _waves[index];
+        _currentWave.Count += _currentWaveCount * 2;
+        _currentWaveCount = _currentWave.Count;
     }
 
     private IEnumerator SetNextWave(float seconds)
     {
-        Debug.Log("Корутина");
         yield return new WaitForSeconds(seconds);
+        _dead = 0;
+        _spawned = 0;
         SetWave(++_currentWaveNumber);
-        _currentWave.Count += _currentWave.Count;
+        WaveStarted?.Invoke(_currentWaveNumber);
     }
 }
 
