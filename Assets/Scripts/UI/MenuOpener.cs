@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MainMenu))]
+[RequireComponent(typeof(MenuPanel))]
 
 public class MenuOpener : MonoBehaviour
 {
-    [SerializeField] private GameObject _panel;
+    [SerializeField] private CanvasGroup _panel;
 
-    private MainMenu _menu;
+    private MenuPanel _menuPanel;
 
     private UIInput _uiInput;
 
@@ -17,7 +17,7 @@ public class MenuOpener : MonoBehaviour
         _uiInput = new UIInput();
         _uiInput.UIMap.OpenPanel.performed += ctx => OnOpen();
 
-        _menu = GetComponent<MainMenu>();
+        _menuPanel = GetComponent<MenuPanel>();
     }
 
     private void OnEnable()
@@ -32,6 +32,6 @@ public class MenuOpener : MonoBehaviour
 
     public void OnOpen()
     {
-        _menu.OpenPanel(_panel);
+        _menuPanel.OpenPanel(_panel);
     }
 }

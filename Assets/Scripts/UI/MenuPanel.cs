@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenu : MonoBehaviour
+public class MenuPanel : MonoBehaviour
 {
-    public void OpenPanel(GameObject panel)
+    public void OpenPanel(CanvasGroup canvasGroup)
     {
-        panel.SetActive(true);
+        canvasGroup.alpha = 1;
         Time.timeScale = 0;
     }
 
-    public void ClosePanel(GameObject panel)
+    public void ClosePanel(CanvasGroup canvasGroup)
     {
-        panel.SetActive(false);
+        canvasGroup.alpha = 0;
         Time.timeScale = 1;
     }
 

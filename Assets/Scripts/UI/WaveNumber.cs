@@ -1,10 +1,17 @@
 ﻿using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(TMP_Text))]
+
 public class WaveNumber : MonoBehaviour
 {
     [SerializeField] private WaveSpawner _waveSpawner;
-    [SerializeField] private TMP_Text _text;
+    private TMP_Text _text;
+
+    private void Awake()
+    {
+        _text = GetComponent<TMP_Text>();
+    }
 
     private void OnEnable()
     {

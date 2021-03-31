@@ -1,16 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private int _health;
+    [SerializeField] private Vector3 _startPosition;
 
     private int _currentHealth;
 
+    public event UnityAction OnDied;
+
     private void Start()
     {
-        _currentHealth = _health;
+        Reset();
         Cursor.visible = false;
     }
 
@@ -20,8 +24,13 @@ public class Player : MonoBehaviour
 
         if (_currentHealth <= 0)
         {
-            Debug.Log("Смэрть");
+            OnDied?.Invoke();
         }
     }
 
+    public void Reset()
+    {
+        _currentHealth = _health;
+        transform.position = _startPosition;
+    }
 }

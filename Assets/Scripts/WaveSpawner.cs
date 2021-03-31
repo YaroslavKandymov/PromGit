@@ -10,8 +10,6 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private float _timeBetweenWaves;
     [SerializeField] private Wave _firstWave;
 
-    public event UnityAction<int> WaveStarted;
-
     private List<Wave> _waves;
     private Wave _currentWave;
     private int _currentWaveNumber = 0;
@@ -20,10 +18,16 @@ public class WaveSpawner : MonoBehaviour
     private int _dead;
     private int _currentWaveCount;
 
+    public int CurrentWaveNumber => _currentWaveNumber;
+
+    public event UnityAction<int> WaveStarted;
+
     private void Start()
     {
-        _waves = new List<Wave>();
-        _waves.Add(_firstWave);
+        _waves = new List<Wave>
+        {
+            _firstWave
+        };
 
         SetWave(_currentWaveNumber);
     }
