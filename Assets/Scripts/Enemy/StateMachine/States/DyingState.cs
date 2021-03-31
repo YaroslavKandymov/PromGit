@@ -26,6 +26,6 @@ public class DyingState : State
 
         yield return new WaitForSeconds(seconds);
 
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

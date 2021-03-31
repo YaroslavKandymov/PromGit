@@ -481,6 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transitions:
+  - {fileID: 952111322652279594}
   - {fileID: 952111322652279593}
   _damage: 1
   _delay: 1

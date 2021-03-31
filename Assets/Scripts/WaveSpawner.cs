@@ -11,6 +11,7 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private Wave _firstWave;
 
     private List<Wave> _waves;
+    private List<Enemy> _enemies;
     private Wave _currentWave;
     private int _currentWaveNumber = 0;
     private float _timeAfterLastSpawn;
@@ -18,18 +19,11 @@ public class WaveSpawner : MonoBehaviour
     private int _dead;
     private int _currentWaveCount;
 
-    public int CurrentWaveNumber => _currentWaveNumber;
-
     public event UnityAction<int> WaveStarted;
 
     private void Start()
     {
-        _waves = new List<Wave>
-        {
-            _firstWave
-        };
-
-        SetWave(_currentWaveNumber);
+        InitializeSpawner();
     }
 
     private void Update()
@@ -58,11 +52,25 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
+    private void InitializeSpawner()
+    {
+        _waves = new List<Wave>
+        {
+            _firstWave
+        };
+
+        _enemies = new List<Enemy>();
+
+        SetWave(_currentWaveNumber);
+        WaveStarted?.Invoke(_currentWaveNumber);
+    }
+
     private void InstantiateEnemy()
     {
         int spawnPointNumber = Random.Range(0, _spawnPoints.Length);
         Enemy enemy = Instantiate(_currentWave.Template, _spawnPoints[spawnPointNumber].position, Quaternion.identity)
             .GetComponent<Enemy>();
+        _enemies.Add(enemy);
         enemy.Init(_player);
         enemy.Dying += OnEnemyDying;
     }
@@ -70,6 +78,7 @@ public class WaveSpawner : MonoBehaviour
     private void OnEnemyDying(Enemy enemy)
     {
         _dead++;
+        _enemies.Remove(enemy);
         enemy.Dying -= OnEnemyDying;
     }
 
@@ -88,6 +97,20 @@ public class WaveSpawner : MonoBehaviour
         _spawned = 0;
         SetWave(++_currentWaveNumber);
         WaveStarted?.Invoke(_currentWaveNumber);
+    }
+
+    public void Reset()
+    {
+        foreach (var enemy in _enemies)
+            Destroy(enemy?.gameObject);
+
+        _currentWaveCount = 0;
+        _currentWaveNumber = 0;
+        _dead = 0;
+        _spawned = 0;
+        _enemies.Clear();
+        _waves.Clear();
+        InitializeSpawner();
     }
 }
 

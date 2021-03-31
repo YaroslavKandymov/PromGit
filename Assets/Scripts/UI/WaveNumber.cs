@@ -25,6 +25,6 @@ public class WaveNumber : MonoBehaviour
 
     private void OnWaveDisplay(int waveNumber)
     {
-        _text.text = waveNumber.ToString();
+        _text.text = (waveNumber + 1).ToString();
     }
 }
