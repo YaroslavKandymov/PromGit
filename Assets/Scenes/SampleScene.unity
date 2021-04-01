@@ -1431,14 +1431,13 @@ GameObject:
   - component: {fileID: 432148962}
   - component: {fileID: 432148965}
   - component: {fileID: 432148964}
-  - component: {fileID: 432148966}
   m_Layer: 5
   m_Name: GameOverScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &432148962
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1499,24 +1498,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 432148961}
   m_CullTransparentMesh: 0
---- !u!114 &432148966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 432148961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 603c281d981351946af1b9f7fab47107, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MenuPanel: {fileID: 432148961}
-  RestartButton: {fileID: 890680733}
-  ExitButton: {fileID: 356794831}
-  Scope: {fileID: 1056610779}
-  _player: {fileID: 5769041921300034305}
-  _waveSpawner: {fileID: 1675855692}
 --- !u!1 &504304925 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: bdd8b59fd28ade14d951aeeb4c9644d0,
@@ -1587,10 +1568,10 @@ RectTransform:
   m_Father: {fileID: 432148962}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.38483733, y: 0.445689}
-  m_AnchorMax: {x: 0.61451167, y: 0.59000003}
+  m_AnchorMin: {x: 0.3687758, y: 0.445689}
+  m_AnchorMax: {x: 0.6305841, y: 0.5881734}
   m_AnchoredPosition: {x: 0.5, y: 1}
-  m_SizeDelta: {x: -0.9202881, y: -1.5733948}
+  m_SizeDelta: {x: -1.0000076, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &537947466
 MonoBehaviour:
@@ -3649,6 +3630,7 @@ GameObject:
   - component: {fileID: 1039344551}
   - component: {fileID: 1039344550}
   - component: {fileID: 1039344554}
+  - component: {fileID: 1039344555}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3752,6 +3734,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _panel: {fileID: 1727850130}
+--- !u!114 &1039344555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039344549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 603c281d981351946af1b9f7fab47107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuPanel: {fileID: 432148961}
+  ContinueButton: {fileID: 890680733}
+  ExitButton: {fileID: 356794831}
+  Scope: {fileID: 1056610779}
+  _player: {fileID: 5769041921300034305}
+  _waveSpawner: {fileID: 1675855692}
+  _wavesCount: {fileID: 2091658716}
 --- !u!1 &1056610779
 GameObject:
   m_ObjectHideFlags: 0
@@ -3763,7 +3764,6 @@ GameObject:
   - component: {fileID: 1056610780}
   - component: {fileID: 1056610782}
   - component: {fileID: 1056610781}
-  - component: {fileID: 1056610783}
   m_Layer: 5
   m_Name: Scope
   m_TagString: Untagged
@@ -3828,18 +3828,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056610779}
   m_CullTransparentMesh: 0
---- !u!114 &1056610783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1056610779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ccc6b1e17bb3ca43a184a90b159ed69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1058170726
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5334,7 +5322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1727850125
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5406,7 +5394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MenuPanel: {fileID: 1727850124}
-  RestartButton: {fileID: 1075844581}
+  ContinueButton: {fileID: 1075844581}
   ExitButton: {fileID: 181160030}
   Scope: {fileID: 1056610779}
 --- !u!1 &1739162060
@@ -5959,10 +5947,10 @@ RectTransform:
   m_Father: {fileID: 432148962}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.6252094, y: 0.445689}
-  m_AnchorMax: {x: 0.832, y: 0.51974946}
-  m_AnchoredPosition: {x: 1.2335815, y: 0.46383667}
-  m_SizeDelta: {x: 2.8408203, y: -2.786995}
+  m_AnchorMin: {x: 0.6305841, y: 0.445689}
+  m_AnchorMax: {x: 0.8393365, y: 0.51974946}
+  m_AnchoredPosition: {x: -0.40100098, y: 0}
+  m_SizeDelta: {x: -1.1591797, y: -2.786995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2091658716
 MonoBehaviour:
@@ -6069,10 +6057,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2091658714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77fd006f28f7dc044813a56130a371d7, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d323574f438b80478178ec6451827e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waveSpawner: {fileID: 1675855692}
+  _player: {fileID: 0}
 --- !u!1001 &2127668652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7316,7 +7304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9f6f15df1723e4f9a8ecc5e9829295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 2
+  _damage: 1
   _fire: {fileID: 1022144095}
 --- !u!137 &5769041921305247618
 SkinnedMeshRenderer:

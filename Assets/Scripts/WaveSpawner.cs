@@ -20,6 +20,7 @@ public class WaveSpawner : MonoBehaviour
     private int _currentWaveCount;
 
     public event UnityAction<int> WaveStarted;
+    public int CurrentWaveNumber => _currentWaveNumber;
 
     private void Start()
     {
@@ -70,6 +71,7 @@ public class WaveSpawner : MonoBehaviour
             .GetComponent<Enemy>();
         _enemies.Add(enemy);
         enemy.Init(_player);
+        enemy.IncreaseHealth(_currentWaveNumber + 1);
         enemy.Dying += OnEnemyDying;
     }
 

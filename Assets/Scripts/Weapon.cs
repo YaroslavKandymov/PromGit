@@ -27,9 +27,14 @@ public class Weapon : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             GameObject hitObject = hit.transform.gameObject;
-            if (hitObject.TryGetComponent<Enemy>(out Enemy enemy))
+
+            if (hitObject.TryGetComponent(out Enemy enemy))
             {
-                enemy.TakeDamage(_damage);
+                if (hit.collider == enemy.HeadCollider)
+                    enemy.TakeDamageInHead(_damage);
+
+                else if (hit.collider == enemy.BodyCollider)
+                    enemy.TakeDamageInBody(_damage);
             }
         }
     }

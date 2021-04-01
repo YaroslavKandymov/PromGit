@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class GameOverPanel : UIPanel
 {
     [SerializeField] private Player _player;
     [SerializeField] private WaveSpawner _waveSpawner;
+    [SerializeField] private TMP_Text _wavesCount;
 
     private void OnEnable()
     {
@@ -34,9 +36,10 @@ public class GameOverPanel : UIPanel
 
     public override void OnOpenPanel()
     {
-        Debug.Log("Умер");
         MenuPanel.SetActive(true);
         Scope.SetActive(false);
+
+        _wavesCount.text = (_waveSpawner.CurrentWaveNumber + 1).ToString();
 
         Time.timeScale = 0;
         Cursor.visible = true;

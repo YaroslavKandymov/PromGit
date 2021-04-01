@@ -439,6 +439,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 1
+  _headCollider: {fileID: 952111322652279598}
+  _bodyCollider: {fileID: 952111322652279599}
 --- !u!114 &952111322652279595
 MonoBehaviour:
   m_ObjectHideFlags: 0
