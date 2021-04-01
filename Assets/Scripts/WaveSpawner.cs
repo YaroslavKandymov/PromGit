@@ -47,9 +47,7 @@ public class WaveSpawner : MonoBehaviour
         }
 
         if (_currentWave.Count <= _spawned)
-        {
             _currentWave = null;
-        }
     }
 
     private void InitializeSpawner()
@@ -84,7 +82,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void SetWave(int index)
     {
-        _waves.Add(new Wave() { Template = _firstWave.Template, Delay = _firstWave.Delay});
+        _waves.Add(new Wave() { Template = _firstWave.Template, Delay = _firstWave.Delay });
         _currentWave = _waves[index];
         _currentWave.Count += _currentWaveCount * 2;
         _currentWaveCount = _currentWave.Count;

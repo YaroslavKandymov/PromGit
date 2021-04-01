@@ -1,21 +1,26 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
-public class MenuPanel : MonoBehaviour
+public class MenuPanel : UIPanel
 {
-    public void OpenPanel(CanvasGroup canvasGroup)
+    protected override void OnEnable()
     {
-        canvasGroup.alpha = 1;
-        Time.timeScale = 0;
+        RestartButton.onClick.AddListener(OnClosePanel);
+        ExitButton.onClick.AddListener(Application.Quit);
     }
 
-    public void ClosePanel(CanvasGroup canvasGroup)
+    protected override void OnDisable()
     {
-        canvasGroup.alpha = 0;
+        RestartButton.onClick.RemoveListener(OnClosePanel);
+        ExitButton.onClick.RemoveListener(Application.Quit);
+    }
+
+    private void OnClosePanel()
+    {
+        MenuPanel.SetActive(false);
+        Scope.SetActive(true);
+
+        Cursor.visible = false;
         Time.timeScale = 1;
-    }
-
-    public void Exit()
-    {
-        Application.Quit();
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] private int _damage;
+    [SerializeField] private ParticleSystem _fire;
 
     private Camera _camera;
 
@@ -15,6 +16,8 @@ public class Weapon : MonoBehaviour
 
     public void Shoot()
     {
+        _fire.Play();
+
         Vector3 point = new Vector3(_camera.pixelWidth / 2, _camera.pixelHeight / 2, 0);
 
         Ray ray = _camera.ScreenPointToRay(point);
