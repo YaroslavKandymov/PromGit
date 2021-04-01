@@ -8,7 +8,6 @@ public class DyingState : State
 {
     [SerializeField] private float _seconds;
 
-    private Animator _animator;
     private Collider _collider;
 
     private void Start()

@@ -3,16 +3,25 @@ using UnityEngine.UI;
 
 public class MenuPanel : UIPanel
 {
-    protected override void OnEnable()
+    private void OnEnable()
     {
-        RestartButton.onClick.AddListener(OnClosePanel);
+        ContinueButton.onClick.AddListener(OnClosePanel);
         ExitButton.onClick.AddListener(Application.Quit);
     }
 
-    protected override void OnDisable()
+    private void OnDisable()
     {
-        RestartButton.onClick.RemoveListener(OnClosePanel);
+        ContinueButton.onClick.RemoveListener(OnClosePanel);
         ExitButton.onClick.RemoveListener(Application.Quit);
+    }
+
+    public override void OnOpenPanel()
+    {
+        MenuPanel.SetActive(true);
+        Scope.SetActive(false);
+
+        Time.timeScale = 0;
+        Cursor.visible = true;
     }
 
     private void OnClosePanel()

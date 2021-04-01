@@ -10,7 +10,6 @@ public class AttackState : State
     [SerializeField] private float _delay;
 
     private float _lastAttackTime;
-    private Animator _animator;
 
     private void Start()
     {
