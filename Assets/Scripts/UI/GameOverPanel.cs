@@ -7,19 +7,21 @@ public class GameOverPanel : UIPanel
     [SerializeField] private Player _player;
     [SerializeField] private WaveSpawner _waveSpawner;
     [SerializeField] private TMP_Text _wavesCount;
+    [SerializeField] private Button _restartButton;
+    [SerializeField] private Button _exitButton;
 
     private void OnEnable()
     {
         _player.OnDied += OnOpenPanel;
-        ContinueButton.onClick.AddListener(OnRestartButtonClick);
-        ExitButton.onClick.AddListener(Application.Quit);
+        _restartButton.onClick.AddListener(OnRestartButtonClick);
+        _exitButton.onClick.AddListener(Application.Quit);
     }
 
     private void OnDisable()
     {
         _player.OnDied -= OnOpenPanel;
-        ContinueButton.onClick.RemoveListener(OnRestartButtonClick);
-        ExitButton.onClick.RemoveListener(Application.Quit);
+        _restartButton.onClick.RemoveListener(OnRestartButtonClick);
+        _exitButton.onClick.RemoveListener(Application.Quit);
     }
 
     private void OnRestartButtonClick()
@@ -27,8 +29,9 @@ public class GameOverPanel : UIPanel
         _player.Reset();
         _waveSpawner.Reset();
 
-        Cursor.visible = false;
         Time.timeScale = 1;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
         MenuPanel.SetActive(false);
         Scope.SetActive(true);
@@ -43,5 +46,6 @@ public class GameOverPanel : UIPanel
 
         Time.timeScale = 0;
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }

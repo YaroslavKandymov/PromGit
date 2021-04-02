@@ -3,16 +3,19 @@ using UnityEngine.UI;
 
 public class MenuPanel : UIPanel
 {
+    [SerializeField] private Button _continueButton;
+    [SerializeField] private Button _exitButton;
+
     private void OnEnable()
     {
-        ContinueButton.onClick.AddListener(OnClosePanel);
-        ExitButton.onClick.AddListener(Application.Quit);
+        _continueButton.onClick.AddListener(OnClosePanel);
+        _exitButton.onClick.AddListener(Application.Quit);
     }
 
     private void OnDisable()
     {
-        ContinueButton.onClick.RemoveListener(OnClosePanel);
-        ExitButton.onClick.RemoveListener(Application.Quit);
+        _continueButton.onClick.RemoveListener(OnClosePanel);
+        _exitButton.onClick.RemoveListener(Application.Quit);
     }
 
     public override void OnOpenPanel()
@@ -22,6 +25,7 @@ public class MenuPanel : UIPanel
 
         Time.timeScale = 0;
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private void OnClosePanel()
@@ -29,7 +33,8 @@ public class MenuPanel : UIPanel
         MenuPanel.SetActive(false);
         Scope.SetActive(true);
 
-        Cursor.visible = false;
         Time.timeScale = 1;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

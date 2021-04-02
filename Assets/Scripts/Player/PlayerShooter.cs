@@ -23,7 +23,7 @@ public class PlayerShooter : MonoBehaviour
         _playerInput.Disable();
     }
 
-    public void OnShoot()
+    private void OnShoot()
     {
         _weapon.Shoot();
     }

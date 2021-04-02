@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private int _health;
+    [SerializeField] private int _headCoefficient;
     [SerializeField] private Collider _headCollider;
     [SerializeField] private Collider _bodyCollider;
 
@@ -22,7 +23,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamageInHead(int damage)
     {
-        _health -= damage * 2;
+        _health -= damage * _headCoefficient;
 
         if(_health <= 0)
         {
@@ -33,7 +34,6 @@ public class Enemy : MonoBehaviour
     public void TakeDamageInBody(int damage)
     {
         _health -= damage;
-
 
         if (_health <= 0)
         {

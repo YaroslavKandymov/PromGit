@@ -51,6 +51,20 @@ public class WaveSpawner : MonoBehaviour
             _currentWave = null;
     }
 
+    public void Reset()
+    {
+        foreach (var enemy in _enemies)
+            Destroy(enemy?.gameObject);
+
+        _currentWaveCount = 0;
+        _currentWaveNumber = 0;
+        _dead = 0;
+        _spawned = 0;
+        _enemies.Clear();
+        _waves.Clear();
+        InitializeSpawner();
+    }
+
     private void InitializeSpawner()
     {
         _waves = new List<Wave>
@@ -75,18 +89,11 @@ public class WaveSpawner : MonoBehaviour
         enemy.Dying += OnEnemyDying;
     }
 
-    private void OnEnemyDying(Enemy enemy)
-    {
-        _dead++;
-        _enemies.Remove(enemy);
-        enemy.Dying -= OnEnemyDying;
-    }
-
     private void SetWave(int index)
     {
         _waves.Add(new Wave() { Template = _firstWave.Template, Delay = _firstWave.Delay });
         _currentWave = _waves[index];
-        _currentWave.Count += _currentWaveCount * 2;
+        _currentWave.Count += _currentWaveCount + _currentWaveCount;
         _currentWaveCount = _currentWave.Count;
     }
 
@@ -99,18 +106,11 @@ public class WaveSpawner : MonoBehaviour
         WaveStarted?.Invoke(_currentWaveNumber);
     }
 
-    public void Reset()
+    private void OnEnemyDying(Enemy enemy)
     {
-        foreach (var enemy in _enemies)
-            Destroy(enemy?.gameObject);
-
-        _currentWaveCount = 0;
-        _currentWaveNumber = 0;
-        _dead = 0;
-        _spawned = 0;
-        _enemies.Clear();
-        _waves.Clear();
-        InitializeSpawner();
+        _dead++;
+        _enemies.Remove(enemy);
+        enemy.Dying -= OnEnemyDying;
     }
 }
 
