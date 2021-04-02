@@ -8,17 +8,15 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Collider _headCollider;
     [SerializeField] private Collider _bodyCollider;
 
-    private Player _target;
-
     public Collider HeadCollider => _headCollider;
     public Collider BodyCollider => _bodyCollider;
-    public Player Target => _target;
+    public Player Target { get; private set; }
 
     public event UnityAction<Enemy> Dying;
 
     public void Init(Player target)
     {
-        _target = target;
+        Target = target;
     }
 
     public void TakeDamageInHead(int damage)
