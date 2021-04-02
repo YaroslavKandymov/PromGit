@@ -19,7 +19,6 @@ public class GameOverPanel : UIPanel
 
     private void OnDisable()
     {
-        _player.OnDied -= OnOpenPanel;
         _restartButton.onClick.RemoveListener(OnRestartButtonClick);
         _exitButton.onClick.RemoveListener(Application.Quit);
     }
@@ -39,6 +38,7 @@ public class GameOverPanel : UIPanel
 
     public override void OnOpenPanel()
     {
+        _player.OnDied -= OnOpenPanel;
         MenuPanel.SetActive(true);
         Scope.SetActive(false);
 
