@@ -29,7 +29,6 @@ public class ScreenBlinker : MonoBehaviour
 
     private void OnScreenBlinking()
     {
-
         _image.DOFade(_alpha, _duration).OnComplete(() => _image.DOFade(0, _duration));
     }
 }
