@@ -5,11 +5,11 @@ using UnityEngine.Events;
 
 public class WaveSpawner : MonoBehaviour
 {
-    [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private Player _player;
     [SerializeField] private float _timeBetweenWaves;
     [SerializeField] private Wave _firstWave;
 
+    private SpawnPoint[] _spawnPoints;
     private List<Wave> _waves;
     private List<Enemy> _enemies;
     private Wave _currentWave;
@@ -24,6 +24,8 @@ public class WaveSpawner : MonoBehaviour
 
     private void Start()
     {
+        _spawnPoints = GetComponentsInChildren<SpawnPoint>();
+
         InitializeSpawner();
     }
 
@@ -81,7 +83,7 @@ public class WaveSpawner : MonoBehaviour
     private void InstantiateEnemy()
     {
         int spawnPointNumber = Random.Range(0, _spawnPoints.Length);
-        Enemy enemy = Instantiate(_currentWave.Template, _spawnPoints[spawnPointNumber].position, Quaternion.identity)
+        Enemy enemy = Instantiate(_currentWave.Template, _spawnPoints[spawnPointNumber].transform.position, Quaternion.identity)
             .GetComponent<Enemy>();
         _enemies.Add(enemy);
         enemy.Init(_player);
