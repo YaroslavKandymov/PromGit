@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Player _player;
+    [SerializeField] private float _duration;
 
     private Slider _slider;
 
@@ -30,6 +31,6 @@ public class HealthBar : MonoBehaviour
 
     private void OnHealthChanged(float value, float maxValue)
     {
-        _slider.DOValue(value / maxValue, 1);
+        _slider.DOValue(value / maxValue, _duration);
     }
 }

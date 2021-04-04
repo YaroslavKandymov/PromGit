@@ -4889,6 +4889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 5769041921300034305}
+  _duration: 1
 --- !u!114 &1480765115
 MonoBehaviour:
   m_ObjectHideFlags: 0
