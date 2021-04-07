@@ -15,15 +15,15 @@ public class WaveNumber : MonoBehaviour
 
     private void OnEnable()
     {
-        _waveSpawner.WaveStarted += OnWaveDisplay;
+        _waveSpawner.WaveStarted += OnWaveSpawned;
     }
 
     private void OnDisable()
     {
-        _waveSpawner.WaveStarted -= OnWaveDisplay;
+        _waveSpawner.WaveStarted -= OnWaveSpawned;
     }
 
-    private void OnWaveDisplay(int waveNumber)
+    private void OnWaveSpawned(int waveNumber)
     {
         _text.text = (waveNumber + 1).ToString();
     }

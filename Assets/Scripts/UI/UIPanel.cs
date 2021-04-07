@@ -9,6 +9,4 @@ public abstract class UIPanel : MonoBehaviour
     {
         MenuPanel.SetActive(false);
     }
-
-    public abstract void OnOpenPanel();
 }

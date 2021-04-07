@@ -2,14 +2,14 @@
 
 public class MenuInput : MonoBehaviour
 {
-    [SerializeField] private UIPanel _panel;
+    [SerializeField] private MenuPanel _panel;
 
     private UIInput _uiInput;
 
     private void Awake()
     {
         _uiInput = new UIInput();
-        _uiInput.UIMap.OpenPanel.performed += ctx => OnOpen();
+        _uiInput.UIMap.OpenPanel.performed += ctx => OnOpenPanel();
     }
 
     private void OnEnable()
@@ -22,7 +22,7 @@ public class MenuInput : MonoBehaviour
         _uiInput.Disable();
     }
 
-    private void OnOpen()
+    private void OnOpenPanel()
     {
         _panel.OnOpenPanel();
     }

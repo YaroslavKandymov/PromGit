@@ -19,15 +19,15 @@ public class ScreenBlinker : MonoBehaviour
 
     private void OnEnable()
     {
-        _player.TakenDamage += OnScreenBlinking;
+        _player.TakenDamage += OnTakeDamage;
     }
 
     private void OnDisable()
     {
-        _player.TakenDamage -= OnScreenBlinking;
+        _player.TakenDamage -= OnTakeDamage;
     }
 
-    private void OnScreenBlinking()
+    private void OnTakeDamage()
     {
         _image.DOFade(_alpha, _duration).OnComplete(() => _image.DOFade(0, _duration));
     }

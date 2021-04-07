@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     private float _currentHealth;
     private Coroutine _coroutine;
 
-    public event UnityAction OnDied;
+    public event UnityAction Died;
     public event UnityAction<float, float> HealthChanged;
     public event UnityAction TakenDamage;
 
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
 
         if (_currentHealth <= 0)
         {
-            OnDied?.Invoke();
+            Died?.Invoke();
         }
     }
 

@@ -8,17 +8,17 @@ public class MenuPanel : UIPanel
 
     private void OnEnable()
     {
-        _continueButton.onClick.AddListener(OnClosePanel);
+        _continueButton.onClick.AddListener(OnContinueButtonClick);
         _exitButton.onClick.AddListener(Application.Quit);
     }
 
     private void OnDisable()
     {
-        _continueButton.onClick.RemoveListener(OnClosePanel);
+        _continueButton.onClick.RemoveListener(OnContinueButtonClick);
         _exitButton.onClick.RemoveListener(Application.Quit);
     }
 
-    public override void OnOpenPanel()
+    public void OnOpenPanel()
     {
         MenuPanel.SetActive(true);
         Scope.SetActive(false);
@@ -28,7 +28,7 @@ public class MenuPanel : UIPanel
         Cursor.lockState = CursorLockMode.None;
     }
 
-    private void OnClosePanel()
+    private void OnContinueButtonClick()
     {
         MenuPanel.SetActive(false);
         Scope.SetActive(true);
